@@ -40,8 +40,16 @@ public class XMLReader {
     frmBase Parent;
 
     Document load;
-    DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+    DocumentBuilderFactory dbf;
     DocumentBuilder db;
+
+    public XMLReader() {
+        dbf = DocumentBuilderFactory.newInstance();
+        dbf.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+        dbf.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+        dbf.setAttribute(XMLConstants.FEATURE_SECURE_PROCESSING, Boolean.TRUE);
+        dbf.setExpandEntityReferences(false);
+    }
 
     public Force[] ReadFile( frmBase parent, String filename ) throws Exception {
         System.out.println("Loading Forces from " + filename);
